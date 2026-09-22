@@ -1,0 +1,15 @@
+node_modules/
+dist/
+release/
+.cache/
+
+# 隐私配置，不提交到 Git
+.env
+.env.local
+config.js
+config.local.js
+
+*.log
+.DS_Store
+.idea/
+.vscode/

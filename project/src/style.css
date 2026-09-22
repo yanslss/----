@@ -1,0 +1,66 @@
+:root {
+  --page-bg: #f4f5f7;
+  --card-bg: #ffffff;
+  --line: #ebedf0;
+  --text-1: #1f2329;
+  --text-2: #646a73;
+  --text-3: #6b7076;
+  --brand: #1989fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden; /* 整页不出现滚动条，滚动都放在内容区内部 */
+  background: var(--page-bg);
+  color: var(--text-1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d5d8dc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2c6cb;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 浅色描边风格按钮统一观感 */
+.van-button--plain {
+  background: #fff;
+}
+
+.van-popup {
+  border-radius: 12px 12px 0 0;
+}
+
+/* 提升占位符与空状态文案的可读性 */
+.van-field__control::placeholder {
+  color: #6f747c;
+}
+
+.van-empty__description {
+  color: var(--text-2);
+}

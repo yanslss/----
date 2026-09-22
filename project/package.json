@@ -1,0 +1,79 @@
+{
+  "name": "local-crawler-workbench",
+  "version": "1.0.0",
+  "private": true,
+  "description": "本地爬虫工作台：Playwright 抓取 + DeepSeek 规划/校验 + Excel 模板导出",
+  "author": "local",
+  "type": "module",
+  "main": "electron/main.js",
+  "config": {
+    "playwright_browsers_path": "0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n VITE,ELECTRON -c cyan,magenta \"vite\" \"wait-on tcp:127.0.0.1:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\"",
+    "build": "vite build",
+    "start": "npm run build && electron .",
+    "install:browser": "playwright install chromium",
+    "dist": "npm run build && electron-builder --win"
+  },
+  "build": {
+    "appId": "com.local.crawler.workbench",
+    "productName": "本地爬虫工作台",
+    "directories": {
+      "output": "../打包输出"
+    },
+    "electronDist": "node_modules/electron/dist",
+    "publish": null,
+    "asarUnpack": [
+      "node_modules/playwright-core/**"
+    ],
+    "extraResources": [
+      {
+        "from": "node_modules/playwright-core/.local-browsers",
+        "to": "ms-playwright",
+        "filter": [
+          "chromium-*/**",
+          "winldd-*/**",
+          ".links/**"
+        ]
+      }
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "本地爬虫工作台"
+    }
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "playwright": "^1.48.0",
+    "vant": "^4.9.8",
+    "vue": "^3.5.12",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "concurrently": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^33.0.2",
+    "electron-builder": "^25.1.8",
+    "vite": "^5.4.10",
+    "wait-on": "^8.0.1"
+  }
+}
